@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import { wordsRouter } from './routes/words.routes.js';
+import { adminRouter } from './routes/admin.routes.js';
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use((req, res, next) => {
 
 // Rutas
 app.use('/api/words', wordsRouter);
+app.use('/api/admin', adminRouter);
 
 // Ruta de health check
 app.get('/health', (req, res) => {
