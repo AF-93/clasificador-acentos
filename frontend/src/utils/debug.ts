@@ -34,7 +34,7 @@ export function logEnvironmentInfo(): void {
 }
 
 export function validateConfiguration(): boolean {
-  const isValid = config.apiBaseUrl && config.apiBaseUrl.length > 0;
+  const isValid = Boolean(config.apiBaseUrl && config.apiBaseUrl.length > 0);
   
   if (!isValid && config.enableDebugLogs) {
     console.error('❌ Configuración inválida: API Base URL no está definida');
