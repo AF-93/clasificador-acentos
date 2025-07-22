@@ -1,0 +1,1 @@
+export { WordsRepository, type IWordsRepository, type CreateWordDto } from './words.repository.js';
