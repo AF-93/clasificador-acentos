@@ -84,7 +84,6 @@ export interface ApiResponse<T> {
 
 // Configuraciones de la aplicación
 export const APP_CONFIG = {
-  API_BASE_URL: (typeof window !== 'undefined' && (window as any).VITE_API_BASE_URL) || 'http://localhost:3001',
   CACHE_EXPIRY_HOURS: 24,
   MIN_CACHE_WORDS: 20,
   MAX_BATCH_SIZE: 50,
