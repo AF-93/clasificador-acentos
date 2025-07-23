@@ -11,11 +11,13 @@ Una aplicación web educativa para que niños de 10 años practiquen la clasific
 - 🚀 91 palabras apropiadas para edad escolar
 - 🔄 Sistema anti-repetición de palabras
 - ✨ Animaciones divertidas y feedback motivador
+- 🔧 Configuración robusta de variables de entorno
+- 🧪 Tests unitarios y herramientas de debug
 
 ## 🚀 Demo en Vivo
 
-- **Frontend**: [https://tu-app.netlify.app](https://tu-app.netlify.app)
-- **API**: [https://tu-app.koyeb.app](https://tu-app.koyeb.app)
+- **Frontend**: [https://clasificador-acentos.netlify.app](https://clasificador-acentos.netlify.app)
+- **API**: [https://bold-rania-af-93-147cdd98.koyeb.app](https://bold-rania-af-93-147cdd98.koyeb.app)
 
 ## 🛠️ Tecnologías
 
@@ -48,18 +50,20 @@ Una aplicación web educativa para que niños de 10 años practiquen la clasific
 
 ### Variables de Entorno
 
-#### Backend
+#### Backend (.env)
 ```bash
 DATABASE_URL=postgresql://...
 PORT=3001
 NODE_ENV=production
-FRONTEND_URL=https://tu-app.netlify.app
+FRONTEND_URL=https://clasificador-acentos.netlify.app
 ```
 
-#### Frontend
+#### Frontend (Netlify Environment Variables)
 ```bash
-VITE_API_BASE_URL=https://tu-app.koyeb.app
+VITE_API_BASE_URL=https://bold-rania-af-93-147cdd98.koyeb.app
 ```
+
+> **Importante**: La variable `VITE_API_BASE_URL` debe configurarse en Netlify sin incluir `/api` al final. El sistema agrega automáticamente esta ruta.
 
 ## 🏃‍♂️ Desarrollo Local
 
@@ -89,12 +93,71 @@ cd ..
 npm run dev
 ```
 
+## 🧪 Testing
+
+### Ejecutar Tests
+```bash
+# Frontend tests
+cd frontend
+npm test
+
+# Tests específicos
+npm test -- --testPathPattern=config
+npm test -- --testPathPattern=api
+```
+
+### Verificación Manual
+```bash
+# Verificar configuración de entorno
+cd frontend/src/verification
+# Importar config-test.ts en tu aplicación para debug
+```
+
 ## 📚 API Endpoints
 
 - `GET /api/words/random` - Palabra aleatoria
 - `GET /api/words/batch?count=10` - Múltiples palabras
 - `GET /api/words/stats` - Estadísticas de la DB
 - `GET /health` - Health check
+
+## 🔧 Configuración y Troubleshooting
+
+### Verificar Configuración
+1. **En desarrollo**: Los logs aparecen automáticamente en consola
+2. **En producción**: Abrir Developer Tools > Console para ver configuración
+
+### Logs Esperados
+```javascript
+🔧 Configuración de entorno: { 
+  apiBaseUrl: "https://bold-rania-af-93-147cdd98.koyeb.app", 
+  environment: "production" 
+}
+🌐 Cliente API inicializado: { 
+  baseUrl: "https://bold-rania-af-93-147cdd98.koyeb.app/api" 
+}
+```
+
+### Problemas Comunes
+
+#### Error 404 en peticiones API
+- **Causa**: Variable `VITE_API_BASE_URL` no configurada correctamente
+- **Solución**: Verificar en Netlify que la variable apunte a la URL correcta del backend
+- **Debug**: Revisar Network tab para ver a qué URL van las peticiones
+
+#### Build falla en Netlify
+- **Causa**: Errores de TypeScript o dependencias faltantes
+- **Solución**: Revisar logs de build y corregir errores de tipos
+- **Debug**: Ejecutar `npm run build` localmente para reproducir
+
+#### Variables de entorno no se aplican
+- **Causa**: Cache de Netlify o configuración incorrecta
+- **Solución**: "Clear cache and deploy site" en Netlify
+- **Debug**: Verificar que las variables estén en todos los contextos de deploy
+
+### Archivos de Referencia
+- `DEPLOYMENT_CHECKLIST.md` - Lista completa de verificación para deploy
+- `DEPLOYMENT_STATUS.md` - Estado actual del despliegue
+- `.kiro/specs/configuracion-variables-entorno/` - Documentación técnica completa
 
 ## 🎓 Uso Educativo
 
