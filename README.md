@@ -13,6 +13,7 @@ Una aplicación web educativa para que niños de 10 años practiquen la clasific
 - ✨ Animaciones divertidas y feedback motivador
 - 🔧 Configuración robusta de variables de entorno
 - 🧪 Tests unitarios y herramientas de debug
+- 🛡️ **Row Level Security (RLS)** implementado para máxima seguridad de datos
 
 ## 🚀 Demo en Vivo
 
@@ -52,7 +53,12 @@ Una aplicación web educativa para que niños de 10 años practiquen la clasific
 
 #### Backend (.env)
 ```bash
-DATABASE_URL=postgresql://...
+# Usuario de API con permisos limitados (solo lectura)
+DATABASE_URL="postgresql://clasificador_api_user:ClasificadorAPI2024!SecurePass@host:port/database"
+
+# Usuario administrador para migraciones y operaciones de escritura
+ADMIN_DATABASE_URL="postgresql://clasificador_admin_user:ClasificadorAdmin2024!SuperSecure@host:port/database"
+
 PORT=3001
 NODE_ENV=production
 FRONTEND_URL=https://clasificador-acentos.netlify.app
