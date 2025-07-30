@@ -51,6 +51,7 @@
   - Asegurar que las migraciones funcionen con RLS habilitado
 
 
+
   - Actualizar proceso de seed de datos iniciales
   - _Requisitos: 3.2, 4.2_
 
