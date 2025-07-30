@@ -11,7 +11,10 @@
     "test": "jest",
     "db:migrate": "prisma migrate dev",
     "db:generate": "prisma generate",
-    "db:seed": "tsx src/database/seed.ts"
+    "db:seed": "tsx src/database/seed.ts",
+    "db:rls:migrate": "bash scripts/run-migrations.sh",
+    "db:rls:migrate:win": "scripts\\run-migrations.bat",
+    "db:rls:verify": "psql $DATABASE_URL -c \"SELECT schemaname, tablename, rowsecurity FROM pg_tables WHERE tablename = 'words';\""
   },
   "dependencies": {
     "express": "^4.18.2",

@@ -1,4 +1,4 @@
-import { prisma } from './client.js';
+import { createAdminClient } from '../config/database.js';
 import { AccentClassifier } from '../classification/index.js';
 
 const classifier = new AccentClassifier();
@@ -23,6 +23,8 @@ const sampleWords = [
 
 async function seed() {
   console.log('🌱 Iniciando seed de la base de datos...');
+  
+  const prisma = createAdminClient();
   
   try {
     // Limpiar datos existentes
